@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { setPokemons } from "./actions/pokemonActions";
 import axios from "axios";
 
+
 const PokemonList = ({ pokemons, setPokemons }) => {
   useEffect(() => {
     const fetchPokemons = async () => {
