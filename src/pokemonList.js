@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
+import { connect } from "react-redux";
+import { setPokemons } from "./actions/pokemonActions";
 import axios from "axios";
 
-const PokemonList = () => {
-  const [pokemons, setPokemons] = useState([]);
-
+const PokemonList = ({ pokemons, setPokemons }) => {
   useEffect(() => {
     const fetchPokemons = async () => {
       try {
@@ -22,7 +22,7 @@ const PokemonList = () => {
     };
 
     fetchPokemons();
-  }, []);
+  }, [setPokemons]);
 
   return (
     <div>
@@ -39,5 +39,12 @@ const PokemonList = () => {
   );
 };
 
-export default PokemonList;
+const mapStateToProps = (state) => ({
+  pokemons: state.pokemons,
+});
 
+const mapDispatchToProps = {
+  setPokemons,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(PokemonList);
